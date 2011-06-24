@@ -36,6 +36,10 @@ Test = (function(){
     puts('Finished in ' + (end_time - start_time) / 1000 + ' seconds.<br>');
     puts('<br>');
     puts(number_of_tests + ' tests, ' + number_of_assertions + ' assertions, '+ 0 + ' failures, ' + 0  + ' errors<br>');
+    setTimeout(function(){
+      cursor.hide();
+      navigation.fadeIn('slow');
+    }, 2000);
   }
 
   var random_between = function(min, max){
@@ -44,7 +48,7 @@ Test = (function(){
   };
 
   var start_time;
-  var cursor, terminal;
+  var cursor, terminal, navigation;
   var current_test = 0;
   var suite_load_time = random_between(1, 3) * 0000;
   var number_of_tests = Math.floor(random_between(30, 300));
@@ -52,8 +56,12 @@ Test = (function(){
 
   return {
     init: function(){
-      $('.run').click(start_testing);
+      $('.run').click(function(e){
+        start_testing();
+        e.preventDefault();
+      });
       terminal = $('.terminal').hide();
+      navigation = $('.navigation').hide();
       cursor = $('.terminal .cursor');
     }
   };

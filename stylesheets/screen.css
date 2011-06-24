@@ -39,3 +39,9 @@ p {
   margin-bottom: -2px;
   background-color: #888;
 }
+
+.navigation li {
+  float: left;
+  margin-top: 20px;
+  margin-right: 20px;
+}
