@@ -1,8 +1,18 @@
 body {
   padding: 5px;
   font-family: 'Inconsolata', arial, serif;
+  line-height: 1.1em;
 }
 
 .terminal {
   word-wrap: break-word;
+}
+
+.terminal .cursor {
+  display: inline-block;
+  width: 7px;
+  height: 16px;
+  margin-top: -2px;
+  margin-bottom: -2px;
+  background-color: #888;
 }

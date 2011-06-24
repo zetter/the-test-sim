@@ -1,10 +1,11 @@
 Test = (function(){
   var puts = function(x){
-    terminal.append(x)
+    cursor.before(x)
   };
 
   var start_testing = function(){
     $('.intro').hide();
+    terminal.show();
     setTimeout(loaded, suite_load_time);
   };
 
@@ -43,7 +44,7 @@ Test = (function(){
   };
 
   var start_time;
-  var terminal;
+  var cursor, terminal;
   var current_test = 0;
   var suite_load_time = random_between(1, 3) * 0000;
   var number_of_tests = Math.floor(random_between(30, 300));
@@ -52,7 +53,8 @@ Test = (function(){
   return {
     init: function(){
       $('.run').click(start_testing);
-      terminal = $('.terminal');
+      terminal = $('.terminal').hide();
+      cursor = $('.terminal .cursor');
     }
   };
 })();
