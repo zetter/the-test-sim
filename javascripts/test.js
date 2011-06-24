@@ -12,7 +12,10 @@ Test = (function(){
   };
 
   var start_testing = function(){
-    $('.intro').hide();
+    current_test = 0;
+    navigation.hide();
+    cursor = $("<span class='cursor'></span>")
+    terminal.html(cursor);
     terminal.show();
     setTimeout(loaded, suite_load_time);
   };
@@ -27,7 +30,7 @@ Test = (function(){
     start_time = (new Date()).getTime();
     setTimeout(test, random_between(0, 1) * 0000);
   };
-  
+
   var test = function(){
     puts('<span>.</span>');
     if (current_test < number_of_tests) {
@@ -55,19 +58,27 @@ Test = (function(){
     return min + (Math.random() * diff);
   };
 
+  var generate = function(){
+    suite_load_time = random_between(1, 3) * 0000;
+    number_of_tests = Math.floor(random_between(30, 300));
+    number_of_assertions = Math.floor(number_of_tests * random_between(1, 3));
+  }
+
   var start_time;
   var cursor, terminal, navigation;
-  var current_test = 0;
-  var suite_load_time = random_between(1, 3) * 0000;
-  var number_of_tests = Math.floor(random_between(30, 300));
-  var number_of_assertions = Math.floor(number_of_tests * random_between(1, 3));
+  var current_test;
+  var suite_load_time, number_of_tests, number_of_assertions;
 
   return {
     init: function(){
+      $('a.new').preventDefaultClick(function(){
+        $('.intro').hide();
+        generate();
+        start_testing();
+      });
       $('a.run').preventDefaultClick(start_testing);
       terminal = $('.terminal').hide();
       navigation = $('.navigation').hide();
-      cursor = $('.terminal .cursor');
     }
   };
 })();
