@@ -65,7 +65,7 @@ Test = (function(){
   }
 
   var start_time;
-  var cursor, terminal, navigation;
+  var cursor, terminal, navigation, settings;
   var current_test;
   var suite_load_time, number_of_tests, number_of_assertions;
 
@@ -76,7 +76,14 @@ Test = (function(){
         generate();
         start_testing();
       });
+
       $('a.run').preventDefaultClick(start_testing);
+
+      $('a.settings').preventDefaultClick(function(){
+        settings.show();
+      });
+
+      // settings = $('div.settings').hide();
       terminal = $('.terminal').hide();
       navigation = $('.navigation').hide();
     }
