@@ -1,0 +1,8 @@
+body {
+  padding: 5px;
+  font-family: 'Inconsolata', arial, serif;
+}
+
+.terminal {
+  word-wrap: break-word;
+}
