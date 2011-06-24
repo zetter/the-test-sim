@@ -4,6 +4,29 @@ body {
   line-height: 1.1em;
 }
 
+strong {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+.intro {
+  margin: 60px auto;
+  width: 550px;
+  text-align: center;
+}
+
+.intro li {
+  margin-bottom: 10px;
+}
+
 .terminal {
   word-wrap: break-word;
 }
