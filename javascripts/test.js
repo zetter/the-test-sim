@@ -1,3 +1,11 @@
+jQuery.fn.preventDefaultClick = function(f) {
+  this.click(function(e){
+    f.call(this, e);
+    e.preventDefault();
+  });
+  return this;
+}
+
 Test = (function(){
   var puts = function(x){
     cursor.before(x)
@@ -56,10 +64,7 @@ Test = (function(){
 
   return {
     init: function(){
-      $('.run').click(function(e){
-        start_testing();
-        e.preventDefault();
-      });
+      $('a.run').preventDefaultClick(start_testing);
       terminal = $('.terminal').hide();
       navigation = $('.navigation').hide();
       cursor = $('.terminal .cursor');
