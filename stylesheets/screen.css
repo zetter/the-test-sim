@@ -25,6 +25,12 @@ body.black div.settings {
 body.colouring .pass {
   color: green;
 }
+body.colouring .fail {
+  color: #DE0000;
+}
+body.colouring .error {
+  color: #FFE100;
+}
 
 strong {
   font-weight: bold;

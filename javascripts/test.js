@@ -22,6 +22,8 @@ Test = (function(){
   var start_testing = function(){
     settings.hide();
     current_test = 0;
+    fail_count = 0;
+    error_count = 0;
     navigation.hide();
     cursor = $("<span class='cursor'></span>")
     terminal.html(cursor);
@@ -41,7 +43,16 @@ Test = (function(){
   };
 
   var test = function(){
-    puts("<span class='pass'>.</span>");
+    if (Settings.Failures.generate()) {
+      puts("<span class='fail'>F</span>");
+      fail_count += 1;
+    } else if (Settings.Errors.generate()) {
+      puts("<span class='error'>E</span>");
+      error_count += 1;
+    } else {
+      puts("<span class='pass'>.</span>");
+    }
+
     if (current_test < number_of_tests) {
       current_test += 1;
       setTimeout(test, Settings.Speed.generate());
@@ -55,7 +66,7 @@ Test = (function(){
   var stats = function(){
     puts('Finished in ' + (end_time - start_time) / 1000 + ' seconds.<br>');
     puts('<br>');
-    puts(number_of_tests + ' tests, ' + number_of_assertions + ' assertions, '+ 0 + ' failures, ' + 0  + ' errors<br>');
+    puts(number_of_tests + ' tests, ' + number_of_assertions + ' assertions, '+ fail_count + ' failures, ' + error_count + ' errors<br>');
     setTimeout(function(){
       cursor.hide();
       navigation.fadeIn('slow');
@@ -107,7 +118,7 @@ Test = (function(){
 
   var start_time;
   var cursor, terminal, navigation, settings;
-  var current_test;
+  var current_test, fail_count, error_count;
   var suite_load_time, number_of_tests, number_of_assertions;
 
   return {

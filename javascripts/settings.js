@@ -47,3 +47,33 @@ Settings.Speed = {
     }
   }
 };
+
+Settings.Failures = {
+  current: 'none',
+  options: ['none', 'few', 'many'],
+  generate: function() {
+    var current = Settings.Failures.current
+    if (current === 'none') {
+      return false;
+    } else if (current === 'few') {
+      return Math.random() < 0.1;
+    } else if (current === 'many') {
+      return Math.random() < 0.5;
+    }
+  }
+};
+
+Settings.Errors = {
+  current: 'none',
+  options: ['none', 'few', 'many'],
+  generate: function() {
+    var current = Settings.Errors.current
+    if (current === 'none') {
+      return false;
+    } else if (current === 'few') {
+      return Math.random() < 0.1;
+    } else if (current === 'many') {
+      return Math.random() < 0.5;
+    }
+  }
+};
