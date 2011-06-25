@@ -70,8 +70,14 @@ div.settings {
   display: inline-block;
   text-align: right;
   width: 140px;
+  margin-right: 10px;
 }
 
 .setting:after {
   content: ":";
+}
+
+.settings a,
+.settings strong {
+  margin-right: 10px;
 }
