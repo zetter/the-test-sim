@@ -17,21 +17,41 @@ Settings.Colouring = {
 };
 
 Settings.Number = {
-  current: 'some',
-  options: ['few', 'some', 'many']
+  current: 'few',
+  options: ['few', 'some', 'many'],
+  generate: function() {
+    var current = Settings.Number.current
+    if (current === 'few') {
+      return Util.random_between(30, 50);
+    } else if (current === 'some') {
+      return Util.random_between(100, 200);
+    } else if (current === 'many') {
+      return Util.random_between(200, 600);
+    }
+  }
 };
 
 Settings.Speed = {
   current: 'ok',
-  options: ['slow', 'ok', 'fast']
+  options: ['slow', 'ok', 'fast'],
+  generate: function() {
+    var current = Settings.Speed.current
+    if (current === 'slow') {
+      return Util.random_between(900, 5000);
+    } else if (current === 'ok') {
+      return Util.random_between(80, 300);
+    } else if (current === 'fast') {
+      return Util.random_between(0, 70);
+    }
+  }
 };
 
-Settings.Failiures = {
-  current: 'none',
-  options: ['none', 'few', 'many']
-};
-
-Settings.Errors = {
-  current: 'none',
-  options: ['none', 'few', 'many']
-};
+// Settings.Failures = {
+//   current: 'none',
+//   options: ['none', 'few', 'many']
+// };
+//
+// Settings.Errors = {
+//   current: 'none',
+//   options: ['none', 'few', 'many']
+// };

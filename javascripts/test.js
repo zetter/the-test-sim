@@ -6,6 +6,13 @@ jQuery.fn.preventDefaultClick = function(f) {
   return this;
 }
 
+Util = {
+  random_between: function(min, max){
+    var diff = max - min;
+    return min + (Math.random() * diff);
+  }
+};
+
 Test = (function(){
   var puts = function(x){
     cursor.before(x)
@@ -29,14 +36,14 @@ Test = (function(){
   var started = function(){
     puts('Started<br>');
     start_time = (new Date()).getTime();
-    setTimeout(test, random_between(0, 1) * 0000);
+    setTimeout(test, Util.random_between(0, 1) * 1000);
   };
 
   var test = function(){
     puts('<span>.</span>');
     if (current_test < number_of_tests) {
       current_test += 1;
-      setTimeout(test, random_between(0, 1) * 0000);
+      setTimeout(test, Settings.Speed.generate());
     } else {
       end_time = (new Date()).getTime();
       puts('<br>');
@@ -54,17 +61,10 @@ Test = (function(){
     }, 2000);
   }
 
-
-  var random_between = function(min, max){
-    var diff = max - min;
-    return min + (Math.random() * diff);
-  };
-
-
   var generate = function(){
-    suite_load_time = random_between(1, 3) * 0000;
-    number_of_tests = Math.floor(random_between(30, 300));
-    number_of_assertions = Math.floor(number_of_tests * random_between(1, 3));
+    suite_load_time = Util.random_between(1, 3) * 0000;
+    number_of_tests = Settings.Number.generate();
+    number_of_assertions = Math.floor(number_of_tests * Util.random_between(1, 3));
   }
 
   var change_setting = function() {
@@ -122,7 +122,7 @@ Test = (function(){
       $('a.settings').preventDefaultClick(function(){
         settings.show();
       });
-      settings = $('div.settings')//.hide();
+      settings = $('div.settings').hide();
       terminal = $('.terminal').hide();
       navigation = $('.navigation').hide();
 
