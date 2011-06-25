@@ -2,6 +2,28 @@ body {
   padding: 5px;
   font-family: 'Inconsolata', arial, serif;
   line-height: 1.1em;
+  background-color: #EEE;
+  color: #111;
+}
+
+a:link,
+a:active,
+a:visited,
+a:hover {
+  color: #2200C1;
+}
+
+body.black {
+  background-color: #111;
+  color: #EEE;
+}
+
+body.black div.settings {
+  color: #111;
+}
+
+body.colouring .pass {
+  color: green;
 }
 
 strong {
@@ -54,12 +76,12 @@ p {
 
 div.settings {
   position: absolute;
-  top:  60px;
+  top: 60px;
   left: 50%;
   margin-left: -275px;
   padding: 20px;
   width: 510px;
-  background-color: #EEE;
+  background-color: #CCC;
 }
 
 .settings li {
@@ -80,4 +102,23 @@ div.settings {
 .settings a,
 .settings strong {
   margin-right: 10px;
+}
+
+.settings a.current {
+  color: #111;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.settings a.new {
+  margin: 0;
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+}
+
+.settings a.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }

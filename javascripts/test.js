@@ -20,6 +20,7 @@ Test = (function(){
 
 
   var start_testing = function(){
+    settings.hide();
     current_test = 0;
     navigation.hide();
     cursor = $("<span class='cursor'></span>")
@@ -29,7 +30,7 @@ Test = (function(){
   };
 
   var loaded = function(){
-    puts('Loaded suite /Users/zetter/.rvm/gems/ree-1.8.7-2010.02/gems/rake-0.8.7/lib/rake/rake_test_loader<br>');
+    puts('Loaded suite /Users/thetestsim/.rvm/gems/ree-1.8.7-2010.02/gems/rake-0.8.7/lib/rake/rake_test_loader<br>');
     setTimeout(started, 500);
   };
 
@@ -40,7 +41,7 @@ Test = (function(){
   };
 
   var test = function(){
-    puts('<span>.</span>');
+    puts("<span class='pass'>.</span>");
     if (current_test < number_of_tests) {
       current_test += 1;
       setTimeout(test, Settings.Speed.generate());
@@ -68,20 +69,25 @@ Test = (function(){
   }
 
   var change_setting = function() {
-    var setting = $(this).siblings('.setting').html();
-    Settings[setting].current = $(this).html();
+    var option = $(this);
+    var setting = option.siblings('.setting').html();
+    Settings[setting].current = option.html();
+
+    option.siblings('a').removeClass('current');
+    option.addClass('current');
 
     var change = Settings[setting].change;
     if ((typeof change) == 'function') {
       change.call(Settings[setting])
     }
-    init_settings();
   }
 
   var init_settings = function(){
-    settings.find('ul').remove();
+    settings.find('.close').preventDefaultClick(function(){
+      settings.hide();
+    })
+    setting_list =  settings.find('ul');
 
-    var list = $('<ul></ul>');
     for (var setting in Settings) {
       var item = $('<li></li>');
       var options = Settings[setting].options;
@@ -89,17 +95,13 @@ Test = (function(){
       item.append("<span class='setting'>" + setting + '</span>');
       for (var option in options) {
         var name = options[option];
-        if (name === current) {
-          $("<strong>" + name + "</strong>").appendTo(item);
-        } else {
-          $("<a href='#'>" + name + "</a>")
-            .preventDefaultClick(change_setting)
-            .appendTo(item);
-        }
+        $("<a href='#'>" + name + "</a>")
+          .preventDefaultClick(change_setting)
+          .appendTo(item)
+          .toggleClass('current', name === current);
       }
-      list.append(item);
+      setting_list.append(item);
     }
-    settings.append(list);
   }
 
 
@@ -107,7 +109,6 @@ Test = (function(){
   var cursor, terminal, navigation, settings;
   var current_test;
   var suite_load_time, number_of_tests, number_of_assertions;
-
 
   return {
     init: function(){
