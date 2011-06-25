@@ -20,7 +20,7 @@ Test = (function(){
 
 
   var start_testing = function(){
-    settings.hide();
+    $('.lightbox').hide();
     current_test = 0;
     fail_count = 0;
     error_count = 0;
@@ -94,9 +94,6 @@ Test = (function(){
   }
 
   var init_settings = function(){
-    settings.find('.close').preventDefaultClick(function(){
-      settings.hide();
-    })
     setting_list =  settings.find('ul');
 
     for (var setting in Settings) {
@@ -117,7 +114,7 @@ Test = (function(){
 
 
   var start_time;
-  var cursor, terminal, navigation, settings;
+  var cursor, terminal, navigation, settings, about;
   var current_test, fail_count, error_count;
   var suite_load_time, number_of_tests, number_of_assertions;
 
@@ -132,11 +129,23 @@ Test = (function(){
       $('a.run').preventDefaultClick(start_testing);
 
       $('a.settings').preventDefaultClick(function(){
+        $('.lightbox').hide();
         settings.show();
       });
+
       settings = $('div.settings').hide();
       terminal = $('.terminal').hide();
       navigation = $('.navigation').hide();
+      about = $('div.about').hide();
+
+      $('.close').preventDefaultClick(function(){
+        $('.lightbox').hide();
+      });
+
+      $('a.about').preventDefaultClick(function(){
+        $('.lightbox').hide();
+        about.show();
+      });
 
       init_settings();
     }

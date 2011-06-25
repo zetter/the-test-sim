@@ -80,7 +80,7 @@ p {
   margin-right: 20px;
 }
 
-div.settings {
+.lightbox {
   position: absolute;
   top: 60px;
   left: 50%;
@@ -88,6 +88,12 @@ div.settings {
   padding: 20px;
   width: 510px;
   background-color: #CCC;
+}
+
+.lightbox a.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .settings li {
@@ -123,8 +129,3 @@ div.settings {
   text-align: center;
 }
 
-.settings a.close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
