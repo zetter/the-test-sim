@@ -41,7 +41,7 @@ Settings.Speed = {
     if (current === 'slow') {
       return Util.random_between(900, 5000);
     } else if (current === 'ok') {
-      return Util.random_between(70, 300);
+      return Util.random_between(70, 500);
     } else if (current === 'fast') {
       return Util.random_between(0, 70);
     }

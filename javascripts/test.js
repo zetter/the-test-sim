@@ -74,7 +74,7 @@ Test = (function(){
   }
 
   var generate = function(){
-    suite_load_time = Util.random_between(1, 3) * 0000;
+    suite_load_time = Util.random_between(1, 2) * 1000;
     number_of_tests = Settings.Number.generate();
     number_of_assertions = Math.floor(number_of_tests * Util.random_between(1, 3));
   }
