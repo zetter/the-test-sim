@@ -5,4 +5,4 @@ Is your test suite getting you down? Use the test sim so experience the warm fuz
 
 See [The Test Sim] in action.
 
-[The Test Sim]: http://thetestsim.com
+[The Test Sim]: http://zetter.github.io/the-test-sim/
